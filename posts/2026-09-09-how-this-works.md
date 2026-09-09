@@ -3,6 +3,7 @@ title: How this site works
 date: 2026-09-09
 summary: A short note on what's in the feed, and how to add to it. Delete this post once you've written a real one.
 tags: [meta]
+draft: true
 ---
 
 The feed below mixes two kinds of thing.

@@ -91,6 +91,7 @@ async function loadRepos() {
       homepage: r.homepage,
       language: r.language,
       stargazers_count: r.stargazers_count,
+      created_at: r.created_at,
       pushed_at: r.pushed_at,
       fork: r.fork,
       archived: r.archived,
@@ -150,7 +151,9 @@ function buildProjectEntries(repos) {
         kind: 'project',
         name: r.name,
         title: meta.title || r.name,
-        date: meta.date || r.pushed_at,
+        // Published-on, not last-touched: created_at keeps a project's position in
+        // the feed stable instead of bouncing it to the top on every README fix.
+        date: meta.date || r.created_at || r.pushed_at,
         summary: meta.blurb || r.description || 'No description yet.',
         repo: r.html_url,
         live,
