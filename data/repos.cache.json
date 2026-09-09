@@ -1,5 +1,17 @@
 [
   {
+    "name": "blog",
+    "description": "Personal feed: posts, plus every public repo with links to source and live site. Pico CSS, no framework.",
+    "html_url": "https://github.com/sprachnik/blog",
+    "homepage": null,
+    "language": null,
+    "stargazers_count": 0,
+    "pushed_at": "2026-09-09T09:24:39Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
     "name": "mcp-registry",
     "description": "Searchable registry of Model Context Protocol (MCP) servers — auto-updated daily, zero build step",
     "html_url": "https://github.com/sprachnik/mcp-registry",

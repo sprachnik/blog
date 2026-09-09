@@ -8,6 +8,7 @@
 
   "_comment_excludeRepos": "Public repos listed here never appear in the feed. Delete a name to surface it. Forks are excluded automatically.",
   "excludeRepos": [
+    "blog",
     "ASlackApi",
     "react-app-v1"
   ]
