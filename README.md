@@ -21,11 +21,21 @@ npm run dev       # build, then serve dist/ locally
 | Write a post | new `.md` file in `posts/` |
 | Link a repo to its live site | `data/sites.json` |
 | Hide a repo from the feed | `excludeRepos` in `site.config.json` |
-| Change the title or tagline | `site.config.json` |
+| Change the title, tagline or social links | `site.config.json` |
+| Stop pulling in Medium | set `mediumFeed` to `null` |
 | Change the look | `src/styles.css` |
 
 Post frontmatter supports `title`, `date`, `summary`, `tags`, `slug`, and
 `draft: true`. See `posts/2026-09-09-how-this-works.md`.
+
+## What's in the feed
+
+Three kinds of entry, sorted newest-first:
+
+- **Projects** — public repos from the GitHub API, dated by repo creation, with
+  live URLs from `data/sites.json`
+- **Writing** — posts from the Medium RSS feed, linked out to, never copied
+- **Posts** — markdown in `posts/`, hosted here at `/p/<slug>/`
 
 ## How the feed stays current
 

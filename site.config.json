@@ -1,10 +1,19 @@
 {
-  "title": "James Moores",
+  "title": "James Stalley-Moores",
   "tagline": "Things I build, mostly at night. Small tools, agent experiments, and the occasional write-up.",
-  "author": "James Moores",
+  "author": "James Stalley-Moores",
   "githubUser": "sprachnik",
   "url": "https://sprachnik-blog.netlify.app",
   "language": "en-gb",
+
+  "links": {
+    "GitHub": "https://github.com/sprachnik",
+    "Medium": "https://medium.com/@jamesanthonystalleymoores",
+    "LinkedIn": "https://www.linkedin.com/in/jamesmoores/"
+  },
+
+  "_comment_mediumFeed": "Medium posts are pulled in at build time and linked out to, never copied. Set to null to stop aggregating.",
+  "mediumFeed": "https://medium.com/@jamesanthonystalleymoores/feed",
 
   "_comment_excludeRepos": "Public repos listed here never appear in the feed. Delete a name to surface it. Forks are excluded automatically.",
   "excludeRepos": [

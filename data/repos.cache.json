@@ -1,5 +1,18 @@
 [
   {
+    "name": "postcode2wad",
+    "description": "Type any UK postcode, get a playable GZDoom level of that real place, from DEFRA LIDAR terrain and real building footprints",
+    "html_url": "https://github.com/sprachnik/postcode2wad",
+    "homepage": null,
+    "language": "Python",
+    "stargazers_count": 0,
+    "created_at": "2026-08-02T18:48:06Z",
+    "pushed_at": "2026-09-09T09:37:10Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
     "name": "blog",
     "description": "Personal feed: posts, plus every public repo with links to source and live site. Pico CSS, no framework.",
     "html_url": "https://github.com/sprachnik/blog",
@@ -7,7 +20,20 @@
     "language": "JavaScript",
     "stargazers_count": 0,
     "created_at": "2026-09-09T09:24:34Z",
-    "pushed_at": "2026-09-09T09:26:11Z",
+    "pushed_at": "2026-09-09T09:30:11Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "planningpermission",
+    "description": "Generates the drawing set a UK householder planning application needs — location plan, block plan, roof plans, elevations, schedule of materials and planning statement — as one true-scale, Planning Portal-ready PDF. Static React SPA, no backend.",
+    "html_url": "https://github.com/sprachnik/planningpermission",
+    "homepage": "",
+    "language": "TypeScript",
+    "stargazers_count": 0,
+    "created_at": "2026-07-11T12:06:36Z",
+    "pushed_at": "2026-09-09T09:28:43Z",
     "fork": false,
     "archived": false,
     "private": false

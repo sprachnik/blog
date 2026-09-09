@@ -53,7 +53,8 @@ body {
 
 .masthead nav {
   display: flex;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
   font-family: var(--ui-font);
   font-size: 0.8125rem;
   letter-spacing: 0.02em;

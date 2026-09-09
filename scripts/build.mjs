@@ -110,6 +110,70 @@ async function loadRepos() {
   }
 }
 
+/* ----------------------------------------------------------- data: medium */
+
+const stripCdata = (s) => s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').trim()
+
+const decodeEntities = (s) =>
+  s.replace(/&#(\d+);/g, (_, d) => String.fromCharCode(+d))
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;|&#x27;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+
+function rssTag(block, tag) {
+  const m = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`).exec(block)
+  return m ? decodeEntities(stripCdata(m[1])) : ''
+}
+
+// Minimal RSS reader — enough for Medium's feed, and cheaper than an XML dep.
+function parseRssItems(xml) {
+  return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(([, block]) => ({
+    title: rssTag(block, 'title'),
+    link: rssTag(block, 'link').split('?')[0],
+    pubDate: rssTag(block, 'pubDate'),
+    categories: [...block.matchAll(/<category>([\s\S]*?)<\/category>/g)]
+      .map(([, c]) => decodeEntities(stripCdata(c))),
+    content: rssTag(block, 'content:encoded'),
+  }))
+}
+
+async function loadMedium() {
+  if (!config.mediumFeed) return []
+  const cachePath = path.join(root, 'data', 'medium.cache.json')
+
+  try {
+    const res = await fetch(config.mediumFeed, {
+      headers: { 'User-Agent': `${config.githubUser}-blog-build` },
+    })
+    if (!res.ok) throw new Error(`Medium feed responded ${res.status}`)
+    const items = parseRssItems(await res.text())
+    if (!items.length) throw new Error('Medium feed contained no items')
+    await writeFile(cachePath, JSON.stringify(items, null, 2) + '\n')
+    console.log(`  medium: fetched ${items.length} post(s) (cache refreshed)`)
+    return items
+  } catch (err) {
+    console.warn(`  medium: ${err.message} — falling back to cache`)
+    return existsSync(cachePath) ? readJson(cachePath) : []
+  }
+}
+
+function buildWritingEntries(items) {
+  return items.map((it) => ({
+    kind: 'writing',
+    title: it.title,
+    date: new Date(it.pubDate).toISOString(),
+    // Medium posts are linked to, never copied — no duplicate content.
+    summary: excerpt(String(it.content || '').replace(/<[^>]+>/g, ' ')),
+    url: it.link,
+    tags: (it.categories || []).slice(0, 3),
+    // A post published through a Medium publication keeps that publication's host.
+    source: new URL(it.link).hostname.replace(/^www\./, ''),
+  }))
+}
+
 /* ------------------------------------------------------------ data: posts */
 
 async function loadPosts() {
@@ -219,7 +283,9 @@ function layout({ title, description, body, canonical, activeNav }) {
     <a class="brand" href="/">${esc(config.title)}</a>
     <nav>
       <a href="/"${isHome ? ' aria-current="page"' : ''}>Feed</a>
-      <a href="https://github.com/${esc(config.githubUser)}" rel="me">GitHub</a>
+      ${Object.entries(config.links || {})
+        .map(([label, href]) => `<a href="${esc(href)}" rel="me">${esc(label)}</a>`)
+        .join('\n      ')}
       <a href="/feed.xml">RSS</a>
     </nav>
   </div>
@@ -230,7 +296,9 @@ ${body}
 </main>
 
 <footer class="wrap">
-  <p>© ${new Date().getFullYear()} ${esc(config.author)} · <a href="https://github.com/${esc(config.githubUser)}">@${esc(config.githubUser)}</a> · <a href="/feed.xml">RSS</a></p>
+  <p>© ${new Date().getFullYear()} ${esc(config.author)} · ${Object.entries(config.links || {})
+    .map(([label, href]) => `<a href="${esc(href)}" rel="me">${esc(label)}</a>`)
+    .join(' · ')} · <a href="/feed.xml">RSS</a></p>
 </footer>
 </body>
 </html>
@@ -254,6 +322,19 @@ function projectCard(e) {
 </article>`
 }
 
+function writingCard(e) {
+  const tags = (e.tags || [])
+    .map((t) => `<span class="tag">${esc(t)}</span>`)
+    .join('')
+  return `<article class="entry entry-writing">
+  <p class="meta"><span class="kind">Writing</span><time datetime="${esc(e.date)}">${esc(fmtDate(e.date))}</time></p>
+  <h2><a href="${esc(e.url)}">${esc(e.title)}</a></h2>
+  <p class="summary">${esc(e.summary)}</p>
+  <p class="links"><a class="link-live" href="${esc(e.url)}">Read on ${esc(e.source)} ↗</a></p>
+  ${tags ? `<p class="tags">${tags}</p>` : ''}
+</article>`
+}
+
 function postCard(e) {
   return `<article class="entry entry-post">
   <p class="meta"><span class="kind">Post</span><time datetime="${esc(e.date)}">${esc(fmtDate(e.date))}</time></p>
@@ -263,6 +344,9 @@ function postCard(e) {
 </article>`
 }
 
+const renderCard = (e) =>
+  e.kind === 'post' ? postCard(e) : e.kind === 'writing' ? writingCard(e) : projectCard(e)
+
 function renderIndex(entries) {
   const body = `<section class="intro">
   <h1>${esc(config.title)}</h1>
@@ -270,7 +354,7 @@ function renderIndex(entries) {
 </section>
 
 <section class="feed">
-${entries.map((e) => (e.kind === 'post' ? postCard(e) : projectCard(e))).join('\n')}
+${entries.map(renderCard).join('\n')}
 </section>`
 
   return layout({
@@ -342,11 +426,12 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><re
 
 console.log('building…')
 
-const [repos, posts] = await Promise.all([loadRepos(), loadPosts()])
+const [repos, posts, mediumItems] = await Promise.all([loadRepos(), loadPosts(), loadMedium()])
 const projects = buildProjectEntries(repos)
-const entries = [...posts, ...projects].sort((a, b) => new Date(b.date) - new Date(a.date))
+const writing = buildWritingEntries(mediumItems)
+const entries = [...posts, ...writing, ...projects].sort((a, b) => new Date(b.date) - new Date(a.date))
 
-console.log(`  feed: ${posts.length} post(s) + ${projects.length} project(s)`)
+console.log(`  feed: ${posts.length} post(s) + ${writing.length} article(s) + ${projects.length} project(s)`)
 if (!entries.length) {
   console.error('  no entries — refusing to publish an empty feed')
   process.exit(1)

@@ -4,11 +4,11 @@
 
   "postcode2wad": {
     "title": "postcode2wad",
-    "live": "https://doomearth.clawhangout.com/",
-    "blurb": "Type any UK postcode, get a playable GZDoom level of that real place, built from DEFRA LIDAR terrain and real building footprints.",
-    "language": "Python",
-    "date": "2026-08-02T00:00:00Z",
-    "alwaysShow": true
+    "live": "https://doomearth.clawhangout.com/"
+  },
+  "planningpermission": {
+    "title": "Planning Permission",
+    "live": "https://planningpermission.netlify.app"
   },
 
   "mcp-registry": {
