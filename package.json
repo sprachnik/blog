@@ -1,0 +1,17 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal feed — posts and projects, built to static HTML.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && npx --yes serve dist"
+  },
+  "dependencies": {
+    "marked": "^15.0.7"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

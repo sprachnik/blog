@@ -1,0 +1,14 @@
+{
+  "title": "James Moores",
+  "tagline": "Things I build, mostly at night. Small tools, agent experiments, and the occasional write-up.",
+  "author": "James Moores",
+  "githubUser": "sprachnik",
+  "url": "https://sprachnik-blog.netlify.app",
+  "language": "en-gb",
+
+  "_comment_excludeRepos": "Public repos listed here never appear in the feed. Delete a name to surface it. Forks are excluded automatically.",
+  "excludeRepos": [
+    "ASlackApi",
+    "react-app-v1"
+  ]
+}

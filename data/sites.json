@@ -1,0 +1,38 @@
+{
+  "_comment": "Maps a public GitHub repo name to its live deployment. Repos not listed here still appear in the feed, just without a 'live' link. Title and blurb are optional overrides; when omitted the GitHub name and description are used.",
+  "_comment_alwaysShow": "alwaysShow renders the entry from this file alone, for repos the public API can't see yet. Supply blurb, date and language, since GitHub won't. Remove the flag once the repo is public and the API takes over.",
+
+  "postcode2wad": {
+    "title": "postcode2wad",
+    "live": "https://doomearth.clawhangout.com/",
+    "blurb": "Type any UK postcode, get a playable GZDoom level of that real place, built from DEFRA LIDAR terrain and real building footprints.",
+    "language": "Python",
+    "date": "2026-08-07T10:42:05Z",
+    "alwaysShow": true
+  },
+
+  "mcp-registry": {
+    "title": "MCP Registry",
+    "live": "https://mcp-registry.net"
+  },
+  "DeclarativeWeb": {
+    "title": "DeclarativeWeb",
+    "live": "https://declarativeweb.com"
+  },
+  "ClawCaptcha": {
+    "title": "ClawCaptcha",
+    "live": "https://clawcaptcha.com"
+  },
+  "DataLens": {
+    "title": "DataLens",
+    "live": "https://datalens-analyse.netlify.app"
+  },
+  "MagicTool": {
+    "title": "MagicTool",
+    "live": "https://magictool-llm.netlify.app"
+  },
+  "morgan-games": {
+    "title": "Morgan Games",
+    "live": "https://morgan-games.netlify.app"
+  }
+}

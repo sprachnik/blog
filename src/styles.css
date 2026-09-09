@@ -1,0 +1,286 @@
+/* Substack-ish reading layout on top of Pico.
+   Pico supplies the colour system and dark mode; everything here is typography,
+   rhythm, and the feed list. Colours are expressed as Pico custom properties so
+   light/dark both work without a second palette. */
+
+:root {
+  --pico-font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --pico-font-size: 100%;
+  --pico-line-height: 1.7;
+  --pico-border-radius: 0.25rem;
+  --pico-typography-spacing-vertical: 1.5rem;
+
+  --measure: 44rem;      /* ~700px reading column */
+  --ui-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --rule: var(--pico-muted-border-color);
+}
+
+body {
+  /* Pico's default container padding is generous on desktop, tight on phones. */
+  margin: 0;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* ---------------------------------------------------------------- masthead */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 3rem;
+}
+
+.masthead .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1.25rem;
+}
+
+.brand {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--pico-color);
+}
+
+.masthead nav {
+  display: flex;
+  gap: 1.25rem;
+  font-family: var(--ui-font);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+
+.masthead nav a {
+  color: var(--pico-muted-color);
+  text-decoration: none;
+}
+
+.masthead nav a:hover,
+.masthead nav a[aria-current="page"] {
+  color: var(--pico-color);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* ------------------------------------------------------------------- intro */
+
+.intro {
+  margin-bottom: 3.5rem;
+}
+
+.intro h1 {
+  font-size: clamp(2.25rem, 7vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.75rem;
+}
+
+.tagline {
+  font-size: 1.125rem;
+  color: var(--pico-muted-color);
+  max-width: 34rem;
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------- feed */
+
+.feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  padding-block: 2.25rem;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+.entry:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.entry h2 {
+  font-size: clamp(1.375rem, 4vw, 1.75rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.6rem;
+}
+
+.entry h2 a {
+  color: var(--pico-color);
+  text-decoration: none;
+}
+
+.entry h2 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--ui-font);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pico-muted-color);
+  margin: 0 0 0.65rem;
+}
+
+.kind {
+  font-weight: 600;
+  color: var(--pico-primary);
+}
+
+.summary {
+  margin: 0 0 1rem;
+  color: var(--pico-color);
+  opacity: 0.85;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-family: var(--ui-font);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.links a {
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.link-repo {
+  color: var(--pico-muted-color);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+}
+
+.tag {
+  font-family: var(--ui-font);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pico-muted-color);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+/* -------------------------------------------------------------------- post */
+
+.post h1 {
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 2rem;
+}
+
+.post > p,
+.post > ul,
+.post > ol,
+.post > blockquote {
+  font-size: 1.125rem;
+}
+
+.post h2,
+.post h3 {
+  margin-top: 2.5rem;
+  letter-spacing: -0.01em;
+}
+
+.post img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--pico-border-radius);
+}
+
+.post blockquote {
+  border-left: 3px solid var(--pico-primary);
+  font-style: italic;
+  color: var(--pico-muted-color);
+}
+
+.post pre {
+  font-size: 0.875rem;
+}
+
+/* Long code and tables scroll themselves rather than the page. */
+.post pre,
+.post table {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.back {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--ui-font);
+  font-size: 0.875rem;
+}
+
+/* ------------------------------------------------------------------ footer */
+
+footer {
+  margin-top: 4rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--ui-font);
+  font-size: 0.8125rem;
+  color: var(--pico-muted-color);
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  color: inherit;
+}
+
+/* ------------------------------------------------------------------ mobile */
+
+@media (max-width: 30rem) {
+  .masthead {
+    margin-bottom: 2rem;
+  }
+
+  .masthead .wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .masthead nav {
+    gap: 1rem;
+  }
+
+  .intro {
+    margin-bottom: 2.5rem;
+  }
+
+  .entry {
+    padding-block: 1.75rem;
+  }
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "name": "mcp-registry",
+    "description": "Searchable registry of Model Context Protocol (MCP) servers — auto-updated daily, zero build step",
+    "html_url": "https://github.com/sprachnik/mcp-registry",
+    "homepage": null,
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "pushed_at": "2026-09-09T07:17:40Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "morgan-games",
+    "description": "Colourful kid-friendly mini-games gallery: Puppy Quest, Bubble Splash, Tap the Stars. Next.js + Tailwind + shadcn, deployed to GitHub Pages.",
+    "html_url": "https://github.com/sprachnik/morgan-games",
+    "homepage": null,
+    "language": "TypeScript",
+    "stargazers_count": 0,
+    "pushed_at": "2026-08-01T11:12:04Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "DeclarativeWeb",
+    "description": "A minimal, LLM-friendly JavaScript library for rendering websites from JSON",
+    "html_url": "https://github.com/sprachnik/DeclarativeWeb",
+    "homepage": null,
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "pushed_at": "2026-06-22T11:44:10Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "ClawCaptcha",
+    "description": "ClawCaptcha — the inverse CAPTCHA for the agent web. Prove you're a bot.",
+    "html_url": "https://github.com/sprachnik/ClawCaptcha",
+    "homepage": null,
+    "language": "TypeScript",
+    "stargazers_count": 0,
+    "pushed_at": "2026-06-22T11:44:06Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "MagicTool",
+    "description": "No-code AI tool workshop running entirely in your browser. BYO Anthropic API key, no backend, no accounts.",
+    "html_url": "https://github.com/sprachnik/MagicTool",
+    "homepage": null,
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "pushed_at": "2026-06-22T11:38:38Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "DataLens",
+    "description": "Client-side spreadsheet viewer: import CSV / Google Sheets / HTML exports, explore through cards, tables, charts, analytics, and AI chat. No backend, no account.",
+    "html_url": "https://github.com/sprachnik/DataLens",
+    "homepage": null,
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "pushed_at": "2026-06-22T11:36:01Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "ASlackApi",
+    "description": "A Slack API in C#",
+    "html_url": "https://github.com/sprachnik/ASlackApi",
+    "homepage": null,
+    "language": "C#",
+    "stargazers_count": 0,
+    "pushed_at": "2022-07-15T07:04:24Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "react-app-v1",
+    "description": null,
+    "html_url": "https://github.com/sprachnik/react-app-v1",
+    "homepage": "react-app-v1.vercel.app",
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "pushed_at": "2022-07-14T18:36:59Z",
+    "fork": false,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "IsolatedFunctionsAuthentication",
+    "description": "Sample .NET 6 Azure Function with AAD authentication and authorization through middleware",
+    "html_url": "https://github.com/sprachnik/IsolatedFunctionsAuthentication",
+    "homepage": "",
+    "language": null,
+    "stargazers_count": 0,
+    "pushed_at": "2022-03-31T10:48:12Z",
+    "fork": true,
+    "archived": false,
+    "private": false
+  },
+  {
+    "name": "gitignore",
+    "description": "A collection of useful .gitignore templates",
+    "html_url": "https://github.com/sprachnik/gitignore",
+    "homepage": "",
+    "language": null,
+    "stargazers_count": 0,
+    "pushed_at": "2017-01-28T11:23:12Z",
+    "fork": true,
+    "archived": false,
+    "private": false
+  }
+]
